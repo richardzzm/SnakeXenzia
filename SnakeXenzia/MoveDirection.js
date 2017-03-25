@@ -5,4 +5,3 @@ var dayi;
         ;
     })(SnakeXenzia = dayi.SnakeXenzia || (dayi.SnakeXenzia = {}));
 })(dayi || (dayi = {}));
-//# sourceMappingURL=MoveDirection.js.map

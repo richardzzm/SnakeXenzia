@@ -2,7 +2,6 @@ var dayi;
 (function (dayi) {
     var SnakeXenzia;
     (function (SnakeXenzia) {
-        // 游戏中的一个位置
         var Point = (function () {
             function Point(x, y) {
                 this.x = x;
@@ -15,4 +14,3 @@ var dayi;
         ;
     })(SnakeXenzia = dayi.SnakeXenzia || (dayi.SnakeXenzia = {}));
 })(dayi || (dayi = {}));
-//# sourceMappingURL=Point.js.map

@@ -19,33 +19,29 @@ var dayi;
             });
             ;
             ;
-            // 坐标是否在蛇身体上
             Snake.prototype.isOnSnake = function (x, y) {
                 return this.bodys.filter(function (o) { return o.x == x && o.y == y; }).length > 0;
             };
             ;
-            // 移动到下一个位置
-            // 返回两个位置：第一个位置是蛇头的新位置，第二个是原蛇尾的位置
             Snake.prototype.move = function () {
                 var newHead = this.nextStep();
                 this.bodys.unshift(newHead);
                 this.bodys.pop();
             };
             ;
-            // 预测下一次蛇头的位置
             Snake.prototype.nextStep = function () {
                 var point;
                 switch (this.Direction) {
-                    case 0 /* Up */:
+                    case 0:
                         point = new SnakeXenzia.Point(this.bodys[0].x, this.bodys[0].y - 1);
                         break;
-                    case 1 /* Down */:
+                    case 1:
                         point = new SnakeXenzia.Point(this.bodys[0].x, this.bodys[0].y + 1);
                         break;
-                    case 2 /* Left */:
+                    case 2:
                         point = new SnakeXenzia.Point(this.bodys[0].x - 1, this.bodys[0].y);
                         break;
-                    case 3 /* Right */:
+                    case 3:
                         point = new SnakeXenzia.Point(this.bodys[0].x + 1, this.bodys[0].y);
                         break;
                 }
@@ -53,9 +49,7 @@ var dayi;
                 return point;
             };
             ;
-            // 吃食物
             Snake.prototype.eat = function (food) {
-                // TODO:检查是否能吃到
                 var newHead = this.nextStep();
                 this.bodys.unshift(newHead);
             };
@@ -66,4 +60,3 @@ var dayi;
         ;
     })(SnakeXenzia = dayi.SnakeXenzia || (dayi.SnakeXenzia = {}));
 })(dayi || (dayi = {}));
-//# sourceMappingURL=Snake.js.map
