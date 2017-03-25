@@ -22,5 +22,9 @@
         drawSnake(x: number, y: number) {
             (<HTMLTableCellElement>(<HTMLTableRowElement>this.container.rows[y]).cells[x]).style.backgroundColor = "#999";
         }
+
+        cleanPoint(x: number, y: number) {
+            (<HTMLTableCellElement>(<HTMLTableRowElement>this.container.rows[y]).cells[x]).style.backgroundColor = "#fff";
+        }
     };
 }

@@ -10,9 +10,16 @@
             this.bodys.push(new Point(x, y));
         }
 
+        get Direction() {
+            return this.direction;
+        };
+        set Direction(direction: MoveDirection) {
+            this.direction = direction;
+        };
+
         // 坐标是否在蛇身体上
         isOnSnake(x: number, y: number): boolean {
-            return this.bodys.length > 0 && this.bodys.every(o => o.x == x && o.y == y);
+            return this.bodys.filter(o => o.x == x && o.y == y).length > 0;
         };
 
         // 移动到下一个位置
@@ -25,7 +32,7 @@
 
         nextStep(): Point {
             var point: Point;
-            switch (this.direction) {
+            switch (this.Direction) {
                 case MoveDirection.Up:
                     point = new Point(this.bodys[0].x, this.bodys[0].y - 1);
                     break;

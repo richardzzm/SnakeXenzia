@@ -7,9 +7,21 @@ var dayi;
                 this.bodys = new Array();
                 this.bodys.push(new SnakeXenzia.Point(x, y));
             }
+            Object.defineProperty(Snake.prototype, "Direction", {
+                get: function () {
+                    return this.direction;
+                },
+                set: function (direction) {
+                    this.direction = direction;
+                },
+                enumerable: true,
+                configurable: true
+            });
+            ;
+            ;
             // 坐标是否在蛇身体上
             Snake.prototype.isOnSnake = function (x, y) {
-                return this.bodys.length > 0 && this.bodys.every(function (o) { return o.x == x && o.y == y; });
+                return this.bodys.filter(function (o) { return o.x == x && o.y == y; }).length > 0;
             };
             ;
             // 移动到下一个位置
@@ -22,17 +34,17 @@ var dayi;
             ;
             Snake.prototype.nextStep = function () {
                 var point;
-                switch (this.direction) {
-                    case SnakeXenzia.MoveDirection.Up:
+                switch (this.Direction) {
+                    case 0 /* Up */:
                         point = new SnakeXenzia.Point(this.bodys[0].x, this.bodys[0].y - 1);
                         break;
-                    case SnakeXenzia.MoveDirection.Down:
+                    case 1 /* Down */:
                         point = new SnakeXenzia.Point(this.bodys[0].x, this.bodys[0].y + 1);
                         break;
-                    case SnakeXenzia.MoveDirection.Left:
+                    case 2 /* Left */:
                         point = new SnakeXenzia.Point(this.bodys[0].x - 1, this.bodys[0].y);
                         break;
-                    case SnakeXenzia.MoveDirection.Right:
+                    case 3 /* Right */:
                         point = new SnakeXenzia.Point(this.bodys[0].x + 1, this.bodys[0].y);
                         break;
                 }

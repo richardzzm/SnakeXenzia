@@ -21,6 +21,9 @@ var dayi;
             Draw.prototype.drawSnake = function (x, y) {
                 this.container.rows[y].cells[x].style.backgroundColor = "#999";
             };
+            Draw.prototype.cleanPoint = function (x, y) {
+                this.container.rows[y].cells[x].style.backgroundColor = "#fff";
+            };
             return Draw;
         }());
         SnakeXenzia.Draw = Draw;

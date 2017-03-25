@@ -1,6 +1,6 @@
 ﻿module dayi.SnakeXenzia {
     // 移动方向
-    export enum MoveDirection {
+    export const enum MoveDirection {
         Up,
         Down,
         Left,

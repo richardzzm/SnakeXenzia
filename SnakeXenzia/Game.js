@@ -4,6 +4,7 @@ var dayi;
     (function (SnakeXenzia) {
         var Game = (function () {
             function Game() {
+                var _this = this;
                 this.foodsCount = 10;
                 // 游戏的行数、列数
                 this.rowCount = 30;
@@ -11,7 +12,8 @@ var dayi;
                 //
                 // 游戏控制
                 //
-                this.isPause = false;
+                this.isPaused = true;
+                this.speed = 250;
                 // 绘制游戏背景
                 this.draw = new SnakeXenzia.Draw();
                 this.draw.drawEnvirment(this.rowCount, this.columnCount);
@@ -22,14 +24,48 @@ var dayi;
                 this.snake = new SnakeXenzia.Snake(x, y);
                 this.drawSnake();
                 // 随机生成方向
-                this.direction = Math.floor(Math.random() * 4);
+                this.snake.Direction = 0 /* Up */;
+                this.snake.Direction = Math.floor(Math.random() * 4);
                 // 生成食物
                 this.foods = new Array();
                 for (var i = 0; i < this.foodsCount; i++) {
                     var food = this.generateFood();
-                    this.foods.push(food);
                     this.draw.drawFood(food.x, food.y);
                 }
+                document.onkeydown = function (e) {
+                    var snake = _this;
+                    switch (e.keyCode | e.which | e.charCode) {
+                        case 13:
+                            if (snake.isPaused) {
+                                snake.run();
+                                snake.isPaused = false;
+                            }
+                            else {
+                                snake.isPaused = true;
+                            }
+                            break;
+                        case 37:
+                            if (snake.snake.Direction == 3 /* Right */)
+                                break;
+                            snake.snake.Direction = 2 /* Left */;
+                            break;
+                        case 38:
+                            if (snake.snake.Direction == 1 /* Down */)
+                                break;
+                            snake.snake.Direction = 0 /* Up */;
+                            break;
+                        case 39:
+                            if (snake.snake.Direction == 2 /* Left */)
+                                break;
+                            snake.snake.Direction = 3 /* Right */;
+                            break;
+                        case 40:
+                            if (snake.snake.Direction == 0 /* Up */)
+                                break;
+                            snake.snake.Direction = 1 /* Down */;
+                            break;
+                    }
+                };
             }
             ;
             Game.prototype.generateFood = function () {
@@ -38,15 +74,22 @@ var dayi;
                 do {
                     x = Math.floor(Math.random() * this.columnCount);
                     y = Math.floor(Math.random() * this.rowCount);
-                } while (this.isHasFood(x, y) || this.snake.isOnSnake(x, y));
-                return new SnakeXenzia.Food(x, y);
+                } while (this.getFood(x, y) != null || this.snake.isOnSnake(x, y));
+                var food = new SnakeXenzia.Food(x, y);
+                this.foods.push(food);
+                return food;
             };
             ;
-            Game.prototype.isHasFood = function (x, y) {
+            Game.prototype.getFood = function (x, y) {
                 if (this.foods.length == 0)
-                    return false;
-                else
-                    return this.foods.every(function (o) { return o.x == x && o.y == y; });
+                    return null;
+                else {
+                    var foods = this.foods.filter(function (o) { return o.x == x && o.y == y; });
+                    if (foods.length > 0)
+                        return foods[0];
+                    else
+                        return null;
+                }
             };
             ;
             Game.prototype.drawSnake = function () {
@@ -61,12 +104,42 @@ var dayi;
                 if (nextPoint.x < 0 || nextPoint.x >= this.columnCount
                     || nextPoint.y < 0 || nextPoint.y >= this.rowCount ||
                     this.snake.isOnSnake(nextPoint.x, nextPoint.y)) {
+                    this.pause();
                     alert("游戏结束");
                 }
-                else if (this.isHasFood(nextPoint.x, nextPoint.y)) {
-                }
                 else {
+                    var food = this.getFood(nextPoint.x, nextPoint.y);
+                    if (food != null) {
+                        // 吃食物
+                        this.snake.eat(food);
+                        this.draw.drawSnake(nextPoint.x, nextPoint.y);
+                        // 将该食物删除
+                        var index = this.foods.indexOf(food);
+                        this.foods.splice(index, 1);
+                        // 产生一个新的食物
+                        var food = this.generateFood();
+                        this.draw.drawFood(food.x, food.y);
+                    }
+                    else {
+                        var snakeTail = this.snake.bodys[this.snake.bodys.length - 1];
+                        this.snake.move();
+                        // 绘制蛇头，擦除蛇尾
+                        var snakeHead = this.snake.bodys[0];
+                        this.draw.drawSnake(snakeHead.x, snakeHead.y);
+                        this.draw.cleanPoint(snakeTail.x, snakeTail.y);
+                    }
                 }
+                ;
+            };
+            ;
+            Game.prototype.pause = function () {
+                clearInterval(this.timer);
+                this.isPaused = true;
+            };
+            ;
+            Game.prototype.run = function () {
+                var snake = this;
+                this.timer = setInterval(function () { return snake.moveNext(); }, this.speed);
             };
             ;
             return Game;
