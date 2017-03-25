@@ -28,6 +28,11 @@
   </ItemGroup>
   <ItemGroup>
     <TypeScriptCompile Include="app.ts" />
+    <TypeScriptCompile Include="Draw.ts" />
+    <TypeScriptCompile Include="Food.ts" />
+    <TypeScriptCompile Include="Game.ts" />
+    <TypeScriptCompile Include="MoveDirection.ts" />
+    <TypeScriptCompile Include="Snake.ts" />
   </ItemGroup>
   <ItemGroup>
     <None Include="web.Debug.config">
