@@ -30,6 +30,7 @@
             this.bodys.pop();
         };
 
+        // 预测下一次蛇头的位置
         nextStep(): Point {
             var point: Point;
             switch (this.Direction) {
@@ -49,6 +50,7 @@
             return point;
         };
 
+        // 吃食物
         eat(food: Food) {
             // TODO:检查是否能吃到
 

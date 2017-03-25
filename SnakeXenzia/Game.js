@@ -42,6 +42,7 @@ var dayi;
                             }
                             else {
                                 snake.isPaused = true;
+                                _this.pause();
                             }
                             break;
                         case 37:
@@ -132,11 +133,13 @@ var dayi;
                 ;
             };
             ;
+            // 暂停
             Game.prototype.pause = function () {
                 clearInterval(this.timer);
                 this.isPaused = true;
             };
             ;
+            // 运行
             Game.prototype.run = function () {
                 var snake = this;
                 this.timer = setInterval(function () { return snake.moveNext(); }, this.speed);

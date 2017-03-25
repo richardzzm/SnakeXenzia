@@ -53,6 +53,7 @@
                         }
                         else {
                             snake.isPaused = true;
+                            this.pause();
                         }
                         break;
                     case 37:    // 左键
@@ -142,11 +143,13 @@
             };
         };
 
+        // 暂停
         pause() {
             clearInterval(this.timer);
             this.isPaused = true;
         };
 
+        // 运行
         run() {
             var snake = this;
             this.timer = setInterval(() =>snake.moveNext(), this.speed);

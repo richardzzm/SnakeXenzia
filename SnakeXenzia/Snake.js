@@ -32,6 +32,7 @@ var dayi;
                 this.bodys.pop();
             };
             ;
+            // 预测下一次蛇头的位置
             Snake.prototype.nextStep = function () {
                 var point;
                 switch (this.Direction) {
@@ -52,6 +53,7 @@ var dayi;
                 return point;
             };
             ;
+            // 吃食物
             Snake.prototype.eat = function (food) {
                 // TODO:检查是否能吃到
                 var newHead = this.nextStep();
