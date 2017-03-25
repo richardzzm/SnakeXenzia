@@ -2,14 +2,13 @@ var dayi;
 (function (dayi) {
     var SnakeXenzia;
     (function (SnakeXenzia) {
-        var Snake = (function () {
-            function Snake() {
-                this.body = new Array();
+        var SnakeBody = (function () {
+            function SnakeBody() {
             }
-            return Snake;
+            return SnakeBody;
         }());
-        SnakeXenzia.Snake = Snake;
+        SnakeXenzia.SnakeBody = SnakeBody;
         ;
     })(SnakeXenzia = dayi.SnakeXenzia || (dayi.SnakeXenzia = {}));
 })(dayi || (dayi = {}));
-//# sourceMappingURL=Snake.js.map
+//# sourceMappingURL=SnakeBody.js.map

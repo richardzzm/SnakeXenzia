@@ -33,6 +33,7 @@
     <TypeScriptCompile Include="Game.ts" />
     <TypeScriptCompile Include="MoveDirection.ts" />
     <TypeScriptCompile Include="Snake.ts" />
+    <TypeScriptCompile Include="SnakeBody.ts" />
   </ItemGroup>
   <ItemGroup>
     <None Include="web.Debug.config">
