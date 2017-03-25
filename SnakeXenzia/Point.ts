@@ -1,8 +1,7 @@
 ﻿module dayi.SnakeXenzia {
-    export class Food {
-        // x 坐标
+    // 游戏中的一个位置
+    export class Point {
         x: number;
-        // y 坐标
         y: number;
 
         constructor(x: number, y: number) {

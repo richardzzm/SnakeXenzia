@@ -2,16 +2,17 @@ var dayi;
 (function (dayi) {
     var SnakeXenzia;
     (function (SnakeXenzia) {
-        var Food = (function () {
-            function Food(x, y) {
+        // 游戏中的一个位置
+        var Point = (function () {
+            function Point(x, y) {
                 this.x = x;
                 this.y = y;
             }
             ;
-            return Food;
+            return Point;
         }());
-        SnakeXenzia.Food = Food;
+        SnakeXenzia.Point = Point;
         ;
     })(SnakeXenzia = dayi.SnakeXenzia || (dayi.SnakeXenzia = {}));
 })(dayi || (dayi = {}));
-//# sourceMappingURL=Food.js.map
+//# sourceMappingURL=Point.js.map

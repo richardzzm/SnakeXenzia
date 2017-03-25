@@ -2,9 +2,13 @@ var dayi;
 (function (dayi) {
     var SnakeXenzia;
     (function (SnakeXenzia) {
+        // 蛇身体单元
         var SnakeBody = (function () {
-            function SnakeBody() {
+            function SnakeBody(x, y) {
+                this.x = x;
+                this.y = y;
             }
+            ;
             return SnakeBody;
         }());
         SnakeXenzia.SnakeBody = SnakeBody;
