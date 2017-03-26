@@ -19,7 +19,7 @@
 
         // 坐标是否在蛇身体上
         isOnSnake(x: number, y: number): boolean {
-            return this.bodys.filter(o => o.x == x && o.y == y).length > 0;
+            return this.bodys.some(o => o.x == x && o.y == y);
         };
 
         // 移动到下一个位置

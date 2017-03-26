@@ -30,3 +30,4 @@ var dayi;
         ;
     })(SnakeXenzia = dayi.SnakeXenzia || (dayi.SnakeXenzia = {}));
 })(dayi || (dayi = {}));
+//# sourceMappingURL=Draw.js.map

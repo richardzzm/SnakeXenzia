@@ -6,19 +6,27 @@ var dayi;
             function Game() {
                 var _this = this;
                 this.foodsCount = 10;
+                // 游戏的行数、列数
                 this.rowCount = 30;
                 this.columnCount = 30;
+                //
+                // 游戏控制
+                //
                 this.isPaused = true;
                 this.speed = 250;
+                // 绘制游戏背景
                 this.draw = new SnakeXenzia.Draw();
                 this.draw.drawEnvirment(this.rowCount, this.columnCount);
+                // 生成贪食蛇
                 var x = Math.floor(Math.random() * this.columnCount);
                 ;
                 var y = Math.floor(Math.random() * this.rowCount);
                 this.snake = new SnakeXenzia.Snake(x, y);
                 this.drawSnake();
-                this.snake.Direction = 0;
+                // 随机生成方向
+                this.snake.Direction = 0 /* Up */;
                 this.snake.Direction = Math.floor(Math.random() * 4);
+                // 生成食物
                 this.foods = new Array();
                 for (var i = 0; i < this.foodsCount; i++) {
                     var food = this.generateFood();
@@ -38,24 +46,24 @@ var dayi;
                             }
                             break;
                         case 37:
-                            if (snake.snake.Direction == 3)
+                            if (snake.snake.Direction == 3 /* Right */)
                                 break;
-                            snake.snake.Direction = 2;
+                            snake.snake.Direction = 2 /* Left */;
                             break;
                         case 38:
-                            if (snake.snake.Direction == 1)
+                            if (snake.snake.Direction == 1 /* Down */)
                                 break;
-                            snake.snake.Direction = 0;
+                            snake.snake.Direction = 0 /* Up */;
                             break;
                         case 39:
-                            if (snake.snake.Direction == 2)
+                            if (snake.snake.Direction == 2 /* Left */)
                                 break;
-                            snake.snake.Direction = 3;
+                            snake.snake.Direction = 3 /* Right */;
                             break;
                         case 40:
-                            if (snake.snake.Direction == 0)
+                            if (snake.snake.Direction == 0 /* Up */)
                                 break;
-                            snake.snake.Direction = 1;
+                            snake.snake.Direction = 1 /* Down */;
                             break;
                     }
                 };
@@ -91,7 +99,9 @@ var dayi;
             };
             ;
             Game.prototype.moveNext = function () {
+                // 蛇下一步的位置
                 var nextPoint = this.snake.nextStep();
+                // 如果蛇移出边界，或蛇头吃到自己身体，则游戏结束
                 if (nextPoint.x < 0 || nextPoint.x >= this.columnCount
                     || nextPoint.y < 0 || nextPoint.y >= this.rowCount ||
                     this.snake.isOnSnake(nextPoint.x, nextPoint.y)) {
@@ -101,16 +111,20 @@ var dayi;
                 else {
                     var food = this.getFood(nextPoint.x, nextPoint.y);
                     if (food != null) {
+                        // 吃食物
                         this.snake.eat(food);
                         this.draw.drawSnake(nextPoint.x, nextPoint.y);
+                        // 将该食物删除
                         var index = this.foods.indexOf(food);
                         this.foods.splice(index, 1);
+                        // 产生一个新的食物
                         var food = this.generateFood();
                         this.draw.drawFood(food.x, food.y);
                     }
                     else {
                         var snakeTail = this.snake.bodys[this.snake.bodys.length - 1];
                         this.snake.move();
+                        // 绘制蛇头，擦除蛇尾
                         var snakeHead = this.snake.bodys[0];
                         this.draw.drawSnake(snakeHead.x, snakeHead.y);
                         this.draw.cleanPoint(snakeTail.x, snakeTail.y);
@@ -119,11 +133,13 @@ var dayi;
                 ;
             };
             ;
+            // 暂停
             Game.prototype.pause = function () {
                 clearInterval(this.timer);
                 this.isPaused = true;
             };
             ;
+            // 运行
             Game.prototype.run = function () {
                 var snake = this;
                 this.timer = setInterval(function () { return snake.moveNext(); }, this.speed);
@@ -137,3 +153,4 @@ var dayi;
         };
     })(SnakeXenzia = dayi.SnakeXenzia || (dayi.SnakeXenzia = {}));
 })(dayi || (dayi = {}));
+//# sourceMappingURL=Game.js.map
