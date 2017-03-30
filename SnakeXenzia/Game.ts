@@ -44,33 +44,32 @@
             }
 
             document.onkeydown = (e) => {
-                var snake = this;
                 switch (e.keyCode | e.which | e.charCode) {
                     case 13: // 回车
-                        if (snake.isPaused) {
-                            snake.run();
-                            snake.isPaused = false;
+                        if (this.isPaused) {
+                            this.run();
+                            this.isPaused = false;
                         }
                         else {
-                            snake.isPaused = true;
+                            this.isPaused = true;
                             this.pause();
                         }
                         break;
                     case 37:    // 左键
-                        if (snake.snake.Direction == MoveDirection.Right) break;
-                        snake.snake.Direction = MoveDirection.Left;
+                        if (this.snake.Direction == MoveDirection.Right) break;
+                        this.snake.Direction = MoveDirection.Left;
                         break;
                     case 38:    // 上键
-                        if (snake.snake.Direction == MoveDirection.Down) break;
-                        snake.snake.Direction = MoveDirection.Up;
+                        if (this.snake.Direction == MoveDirection.Down) break;
+                        this.snake.Direction = MoveDirection.Up;
                         break;
                     case 39:    // 右键
-                        if (snake.snake.Direction == MoveDirection.Left) break;
-                        snake.snake.Direction = MoveDirection.Right;
+                        if (this.snake.Direction == MoveDirection.Left) break;
+                        this.snake.Direction = MoveDirection.Right;
                         break;
                     case 40:    // 下键
-                        if (snake.snake.Direction == MoveDirection.Up) break;
-                        snake.snake.Direction = MoveDirection.Down;
+                        if (this.snake.Direction == MoveDirection.Up) break;
+                        this.snake.Direction = MoveDirection.Down;
                         break;
                 }
             };

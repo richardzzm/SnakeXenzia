@@ -33,37 +33,36 @@ var dayi;
                     this.draw.drawFood(food.x, food.y);
                 }
                 document.onkeydown = function (e) {
-                    var snake = _this;
                     switch (e.keyCode | e.which | e.charCode) {
                         case 13:
-                            if (snake.isPaused) {
-                                snake.run();
-                                snake.isPaused = false;
+                            if (_this.isPaused) {
+                                _this.run();
+                                _this.isPaused = false;
                             }
                             else {
-                                snake.isPaused = true;
+                                _this.isPaused = true;
                                 _this.pause();
                             }
                             break;
                         case 37:
-                            if (snake.snake.Direction == 3 /* Right */)
+                            if (_this.snake.Direction == 3 /* Right */)
                                 break;
-                            snake.snake.Direction = 2 /* Left */;
+                            _this.snake.Direction = 2 /* Left */;
                             break;
                         case 38:
-                            if (snake.snake.Direction == 1 /* Down */)
+                            if (_this.snake.Direction == 1 /* Down */)
                                 break;
-                            snake.snake.Direction = 0 /* Up */;
+                            _this.snake.Direction = 0 /* Up */;
                             break;
                         case 39:
-                            if (snake.snake.Direction == 2 /* Left */)
+                            if (_this.snake.Direction == 2 /* Left */)
                                 break;
-                            snake.snake.Direction = 3 /* Right */;
+                            _this.snake.Direction = 3 /* Right */;
                             break;
                         case 40:
-                            if (snake.snake.Direction == 0 /* Up */)
+                            if (_this.snake.Direction == 0 /* Up */)
                                 break;
-                            snake.snake.Direction = 1 /* Down */;
+                            _this.snake.Direction = 1 /* Down */;
                             break;
                     }
                 };
