@@ -25,14 +25,14 @@
         // 移动到下一个位置
         // 返回两个位置：第一个位置是蛇头的新位置，第二个是原蛇尾的位置
         move() {
-            var newHead: Point = this.nextStep();
+            let newHead: Point = this.nextStep();
             this.bodys.unshift(newHead);
             this.bodys.pop();
         };
 
         // 预测下一次蛇头的位置
         nextStep(): Point {
-            var point: Point;
+            let point: Point;
             switch (this.Direction) {
                 case MoveDirection.Up:
                     point = new Point(this.bodys[0].x, this.bodys[0].y - 1);
@@ -54,7 +54,7 @@
         eat(food: Food) {
             // TODO:检查是否能吃到
 
-            var newHead: Point = this.nextStep();
+            let newHead: Point = this.nextStep();
             this.bodys.unshift(newHead);
         };
     };

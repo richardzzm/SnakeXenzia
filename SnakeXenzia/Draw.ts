@@ -1,5 +1,5 @@
 ﻿module dayi.SnakeXenzia {
-    export class Draw {
+    export class Draw implements IDraw {
         // 容器
         container: HTMLTableElement;
 
@@ -8,9 +8,9 @@
         };
 
         drawEnvirment(rowCount: number, columnCount: number) {
-            for (var i = 0; i < rowCount; i++) {
-                var row = <HTMLTableRowElement>this.container.insertRow(-1);
-                for (var j = 0; j < columnCount; j++)
+            for (let i = 0; i < rowCount; i++) {
+                let row = <HTMLTableRowElement>this.container.insertRow(-1);
+                for (let j = 0; j < columnCount; j++)
                     row.insertCell(-1);
             }
         };

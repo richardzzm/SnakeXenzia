@@ -117,7 +117,7 @@ var dayi;
                         var index = this.foods.indexOf(food);
                         this.foods.splice(index, 1);
                         // 产生一个新的食物
-                        var food = this.generateFood();
+                        food = this.generateFood();
                         this.draw.drawFood(food.x, food.y);
                     }
                     else {
